@@ -14,7 +14,7 @@ class PlayScene extends Phaser.Scene {
          this.pipeHorizontalDistance = 0;
          this.pipeVerticalDistanceRange = [150, 250];
          this.pipeHorizontalDistanceRange = [500, 600];
-         this.jetVelocity = 250;
+         this.jetVelocity = 300;
     }
 
     preload() {
@@ -44,7 +44,7 @@ class PlayScene extends Phaser.Scene {
 
     createJet() {
       this.jet = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'jet').setOrigin(0);
-      this.jet.body.gravity.y = 200;
+      this.jet.body.gravity.y = 600;
       this.jet.setCollideWorldBounds(true);
     }
 
@@ -75,7 +75,7 @@ class PlayScene extends Phaser.Scene {
     }
 
     checkGameStatus(){
-      if (this.jet.getBounds().bottom >= this.config.height   ||  this.jet.y <=  - this.jet.height) {
+      if (this.jet.getBounds().bottom >= this.config.height || this.jet.y <= 0) {
         this.gameOver(); 
       }
     }
@@ -117,11 +117,17 @@ class PlayScene extends Phaser.Scene {
       }
       
       gameOver (){
-      this.physics.pause();
-      this.jet.setTint(0xEE4824)
-        // this.jet.x = this.config.startPosition.x;
-        // this.jet.y = this.config.startPosition.y;
-        // this.jet.body.velocity.y = 0;
+          this.physics.pause();
+          this.jet.setTint(0xEE4824)
+
+          this.time.addEvent({
+            delay: 1000,
+            callback: () => {
+              this.scene.restart();
+            },
+            loop: false
+          })
+
       }
       
       jetControl(){
