@@ -45,14 +45,19 @@ class PlayScene extends Phaser.Scene {
     createJet() {
       this.jet = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'jet').setOrigin(0);
       this.jet.body.gravity.y = 200;
+      this.jet.setCollideWorldBounds(true);
     }
 
     createPipes() {
       this.pipes = this.physics.add.group()
 
       for (let i = 0; i < PIPES_TO_RENDER; i++){
-        const upperPipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 1);
-        const lowerPipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 0);
+        const upperPipe = this.pipes.create(0, 0, 'pipe')
+        .setImmovable(true)
+        .setOrigin(0, 1);
+        const lowerPipe = this.pipes.create(0, 0, 'pipe')
+        .setImmovable(true)
+        .setOrigin(0, 0);
 
         this.placePipe(upperPipe, lowerPipe)
     
@@ -70,9 +75,9 @@ class PlayScene extends Phaser.Scene {
     }
 
     checkGameStatus(){
-      if (this.jet.y > this.config.height   ||  this.jet.y <  - this.jet.height) {
+      if (this.jet.getBounds().bottom >= this.config.height   ||  this.jet.y <=  - this.jet.height) {
         this.gameOver(); 
-    }
+      }
     }
 
     placePipe(uPipe, lPipe) {
@@ -112,10 +117,11 @@ class PlayScene extends Phaser.Scene {
       }
       
       gameOver (){
-      
-        this.jet.x = this.config.startPosition.x;
-        this.jet.y = this.config.startPosition.y;
-        this.jet.body.velocity.y = 0;
+      this.physics.pause();
+      this.jet.setTint(0xEE4824)
+        // this.jet.x = this.config.startPosition.x;
+        // this.jet.y = this.config.startPosition.y;
+        // this.jet.body.velocity.y = 0;
       }
       
       jetControl(){
