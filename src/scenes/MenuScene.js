@@ -33,6 +33,15 @@ class MenuScene extends BaseScene {
           fill: '#FFF'
         });
       })
+      textgameObject.on('pointerup', () => {
+        menuItem.scene && this.scene.start(menuItem.scene);
+
+        
+      if (menuItem.text === 'Exit') {
+        this.game.destroy(true);
+      }
+      })
+
     }
     
     
