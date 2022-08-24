@@ -46,6 +46,37 @@ class PlayScene extends BaseScene {
       this.createPause();
       this.handleInputs();
       this.listenToEvents();
+
+      // this.anims.create({
+      //   key: 'exhaust',
+      //   frames: [
+
+      //     { key: 'exhaust1' },
+      //     { key: 'exhaust2' },
+      //     { key: 'exhaust3' },
+      //     { key: 'exhaust4' }
+      //   ],
+      //   frameRate: 8,
+      //   // repeat infinitely
+      //   repeat: -1
+      // })
+
+      // this.add.sprite(0.1, 0.5, 'exhaust1').play('exhaust');
+
+      this.anims.create({
+        key: 'fly',
+        frames: this.anims.generateFrameNumbers('jet', { start: 9, end: 15}),
+        // 24 fps default, it will play animation consisting of 24 frames in 1 second
+        // in case of framerate 2 and sprite of 8 frames animations will play in
+        // 4 sec; 8 / 2 = 4
+        frameRate: 8,
+        // repeat infinitely
+        repeat: -1
+      })
+  
+  
+      this.jet.play('fly');
+
     }
 
     update() {
@@ -84,7 +115,12 @@ class PlayScene extends BaseScene {
     }
 
     createJet() {
-      this.jet = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'jet').setOrigin(0);
+      this.jet = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'jet')
+      .setFlipX(true) // is to turn the image around 
+      .setScale(1)
+      .setOrigin(0)
+
+      this.jet.setBodySize(this.jet.width, this.jet.height -6);
       this.jet.body.gravity.y = 600;
       this.jet.setCollideWorldBounds(true);
     }
