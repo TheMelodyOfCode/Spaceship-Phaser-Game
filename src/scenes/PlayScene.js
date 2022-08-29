@@ -63,19 +63,19 @@ class PlayScene extends BaseScene {
 
       // this.add.sprite(0.1, 0.5, 'exhaust1').play('exhaust');
 
-      this.anims.create({
-        key: 'fly',
-        frames: this.anims.generateFrameNumbers('jet', { start: 9, end: 15}),
-        // 24 fps default, it will play animation consisting of 24 frames in 1 second
-        // in case of framerate 2 and sprite of 8 frames animations will play in
-        // 4 sec; 8 / 2 = 4
-        frameRate: 8,
-        // repeat infinitely
-        repeat: -1
-      })
+      // this.anims.create({
+      //   key: 'fly',
+      //   frames: this.anims.generateFrameNumbers('jet', { start: 9, end: 15}),
+      //   // 24 fps default, it will play animation consisting of 24 frames in 1 second
+      //   // in case of framerate 2 and sprite of 8 frames animations will play in
+      //   // 4 sec; 8 / 2 = 4
+      //   frameRate: 8,
+      //   // repeat infinitely
+      //   repeat: -1
+      // })
   
   
-      this.jet.play('fly');
+      // this.jet.play('fly');
 
     }
 
@@ -116,7 +116,7 @@ class PlayScene extends BaseScene {
 
     createJet() {
       this.jet = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'jet')
-      .setFlipX(true) // is to turn the image around 
+      .setFlipX(false) // is to turn the image around 
       .setScale(1)
       .setOrigin(0)
 

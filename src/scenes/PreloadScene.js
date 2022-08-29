@@ -11,12 +11,12 @@ class PreloadScene extends Phaser.Scene {
 
     preload() {
       this.load.image('sky', 'assets/sky.png');
-      this.load.spritesheet('jet', 'assets/birdSprite.png', {
-        frameWidth: 16, frameHeight: 16
-      });
-      // this.load.spritesheet('jet', 'assets/spaceship/Ship1.png', {
-      //   frameWidth: 64, frameHeight: 64
+      // this.load.spritesheet('jet', 'assets/birdSprite.png', {
+      //   frameWidth: 16, frameHeight: 16
       // });
+      this.load.spritesheet('jet', 'assets/spaceship/Ship1.png', {
+        frameWidth: 64, frameHeight: 64
+      });
       // this.load.image('exhaust1', 'assets/spaceship/exhaust1.png', {
       //   frameWidth: 64, frameHeight: 64
       // });
